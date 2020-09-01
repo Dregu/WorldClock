@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="WorldClock.Widget1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:WorldClock"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource SystemControlAcrylicElementBrush}"
+    mc:Ignorable="d"
+    Name="Page_Clock">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ItemsControl ItemsSource="{x:Bind clocks}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="DarkGray" BorderThickness="1" Margin="5,0,5,0" Width="150" Height="150" Background="{Binding color}">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock TextAlignment="Center" Text="{Binding name}" FontWeight="Bold"></TextBlock>
+                                <TextBlock TextAlignment="Center" Text="{Binding city}"></TextBlock>
+                                <TextBlock TextAlignment="Center" Text="{Binding time}" FontWeight="Bold" FontSize="40" Margin="0,-10,0,-5"></TextBlock>
+                                <TextBlock TextAlignment="Center" Text="{Binding date}"></TextBlock>
+                                <TextBlock TextAlignment="Center" Text="{Binding diff}"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </StackPanel>
+</Page>

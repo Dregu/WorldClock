@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="WorldClock.Widget1Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:WorldClock"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource SystemControlAcrylicElementBrush}"
+    mc:Ignorable="d">
+
+    <StackPanel Orientation="Vertical" Margin="5">
+        <TextBlock FontWeight="Bold">Add new timezone</TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="80" VerticalAlignment="Center">Country:</TextBlock>
+            <ComboBox Width="238" ItemsSource="{x:Bind countries}" DisplayMemberPath="Value" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" SelectionChanged="CountryChanged"></ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="80" VerticalAlignment="Center">Timezone:</TextBlock>
+            <ComboBox Width="238" x:Name="ZonesBox" ItemsSource="{x:Bind timezones}" DisplayMemberPath="Value" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" SelectionChanged="TimeZoneChanged"></ComboBox>
+        </StackPanel>
+        <TextBlock>Show clocks for timezones:</TextBlock>
+        <TextBox Height="318" Name="TimeZones" TextWrapping="NoWrap" AcceptsReturn="True" TextChanged="TimeZones_TextChanged"></TextBox>
+    </StackPanel>
+</Page>
