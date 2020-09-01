@@ -199,6 +199,9 @@
       <Version>4.0.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <PropertyGroup>
     <XboxGameBar-Platform Condition="'$(Platform)' == 'x86'">win32</XboxGameBar-Platform>
     <XboxGameBar-Platform Condition="'$(Platform)' != 'x86'">$(Platform)</XboxGameBar-Platform>
