@@ -145,12 +145,11 @@ namespace WorldClock
                     clock.iana = tz;
                     clock.timezone = TimeZoneInfo.FindSystemTimeZoneById(name);
                     clock.name = TZNames.GetNamesForTimeZone(tz, "en").Generic.Replace(" Time", "").Replace("Coordinated ", "");
-                    clock.time = "";
-                    clock.date = "";
                     clock.abbr = TZNames.GetAbbreviationsForTimeZone(tz, "en").Generic;
                     clock.city = ToCity(tz);
                     clock.diff = ToDiff(clock.timezone);
                     clock.color = clock.timezone.GetUtcOffset(DateTime.Now) == TimeZoneInfo.Local.GetUtcOffset(DateTime.Now) ? current : transparent;
+                    UpdateClock(clock);
                     clocks.Add(clock);
                 }
                 catch(Exception e)
@@ -188,13 +187,18 @@ namespace WorldClock
             UpdateClocks();
         }
 
+        private void UpdateClock(Clock clock)
+        {
+            DateTime time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, clock.timezone);
+            clock.time = time.ToString(@"HH\:mm");
+            clock.date = time.ToString(@"ddd d\.M\.");
+        }
+
         private void UpdateClocks()
         {
             foreach(Clock clock in clocks)
             {
-                DateTime time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, clock.timezone);
-                clock.time = time.ToString(@"HH\:mm");
-                clock.date = time.ToString(@"ddd d\.M\.");
+                UpdateClock(clock);
             }
         }
 
